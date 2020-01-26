@@ -12,6 +12,8 @@ interface ButtonProps {
         rowParam: number,
         colParam: number,
     ): (...args: any[]) => void;
+    onMouseDown: (...args: any[]) => void;
+    onMouseUp: (...args: any[]) => void;
     onContext(
         rowParam: number,
         colParam: number,
@@ -26,6 +28,8 @@ const Button: React.FC<ButtonProps> = ({
     row,
     state,
     value,
+    onMouseDown,
+    onMouseUp,
 }) => {
     const renderContent = (): React.ReactNode => {
         if (state === CellState.visible) {
@@ -52,17 +56,18 @@ const Button: React.FC<ButtonProps> = ({
     };
 
     return (
-        <div
-            role="button"
-            aria-label="button"
+        <button
+            aria-label={`button-row${row}-column${col}`}
             className={`Button ${
                 state === CellState.visible ? 'visible' : ''
             } value-${value} ${red ? 'red' : ''}`}
             onClick={onClick(row, col)}
             onContextMenu={onContext(row, col)}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
         >
             {renderContent()}
-        </div>
+        </button>
     );
 };
 

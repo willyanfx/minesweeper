@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { MAX_COLS, MAX_ROWS, NO_OF_BOMBS } from '../constants';
 import { CellValue, CellState, Cell } from '../types';
 const grabAllAdjacentCells = (
