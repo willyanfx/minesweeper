@@ -205,7 +205,7 @@ const App: React.FC = () => {
                 >
                     <span role="img">{face}</span>
                 </button>
-                <NumberDisplay status={live} />
+                <NumberDisplay status={live} gameOver={hasLost} />
             </div>
             <div className="Body">{renderCells()}</div>
         </div>
