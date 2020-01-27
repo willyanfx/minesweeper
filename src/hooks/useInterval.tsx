@@ -3,8 +3,6 @@ import { useRef, useEffect } from 'react';
 
 function useInterval<T>(callback: T, running: boolean) {
     const savedCallback: any = useRef(null);
-
-    console.log(callback);
     // Remember the latest function.
     useEffect(() => {
         savedCallback.current = callback;

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
-import Button from '../Button';
+import Cells from '../Cells';
 import NumberDisplay from '../NumberDisplay';
 import { generateCells, openMultipleCells } from '../../utils';
 import { Cell, CellState, CellValue, Face } from '../../types';
@@ -36,6 +36,7 @@ const App: React.FC = () => {
     ) => (): void => {
         let newCells = cells.slice();
 
+        if (hasLost) return;
         // start the game
         if (!live) {
             let isABomb =
@@ -151,31 +152,14 @@ const App: React.FC = () => {
     const handleMouseDown = (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>,
     ) => {
+        if (hasLost) return;
         setFace(Face.oh);
     };
     const handleMouseUp = (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>,
     ) => {
+        if (hasLost) return;
         setFace(Face.smile);
-    };
-
-    const renderCells = (): React.ReactNode => {
-        return cells.map((row, rowIndex) =>
-            row.map((cell, colIndex) => (
-                <Button
-                    col={colIndex}
-                    key={`${rowIndex}-${colIndex}`}
-                    onClick={handleCellClick}
-                    onContext={handleCellContext}
-                    red={cell.red}
-                    row={rowIndex}
-                    state={cell.state}
-                    value={cell.value}
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={handleMouseUp}
-                />
-            )),
-        );
     };
 
     const showAllBombs = (): Cell[][] => {
@@ -205,9 +189,17 @@ const App: React.FC = () => {
                 >
                     <span role="img">{face}</span>
                 </button>
-                <NumberDisplay status={live} gameOver={hasLost} />
+                <NumberDisplay live={live} gameOver={hasLost} />
             </div>
-            <div className="Body">{renderCells()}</div>
+            <div className="Body">
+                <Cells
+                    state={cells}
+                    onClick={handleCellClick}
+                    onContext={handleCellContext}
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
+                />
+            </div>
         </div>
     );
 };

@@ -4,23 +4,24 @@ import useInterval from '../../hooks/useInterval';
 
 interface NumberDisplayProps {
     value?: number;
-    status?: boolean;
+    live?: boolean;
     gameOver?: boolean;
 }
 
 const NumberDisplay: React.FC<NumberDisplayProps> = ({
     value,
-    status = false,
+    live = false,
     gameOver,
 }) => {
     const [time, setTime] = useState<number>(0);
     useInterval(() => {
         setTime(time + 1);
-    }, status);
+    }, live);
 
     useEffect(() => {
-        if (!gameOver) setTime(0);
-    }, [!status, gameOver]);
+        if (gameOver) return;
+        if (live && !gameOver) setTime(0);
+    }, [!live, gameOver]);
 
     if (value) {
         return (
