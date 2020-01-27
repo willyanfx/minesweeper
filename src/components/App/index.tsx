@@ -143,6 +143,7 @@ const App: React.FC = () => {
 
     const handleFaceClick = (): void => {
         setLive(false);
+        setFace(Face.smile);
         setCells(generateCells());
         setHasLost(false);
         setHasWon(false);
