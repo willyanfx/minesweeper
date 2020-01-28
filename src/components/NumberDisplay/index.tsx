@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './NumberDisplay.scss';
 import useInterval from '../../hooks/useInterval';
+import ThemeContext from '../../contexts/theme';
 
 interface NumberDisplayProps {
     value?: number;
@@ -14,24 +15,35 @@ const NumberDisplay: React.FC<NumberDisplayProps> = ({
     gameOver,
 }) => {
     const [time, setTime] = useState<number>(0);
+
+    const [theme, mode] = useContext(ThemeContext);
+
     useInterval(() => {
         setTime(time + 1);
     }, live);
 
+    const classes = [
+        'numberDisplay',
+        `${theme}--numberDisplay`,
+        `${theme}--numberDisplay-${mode}`,
+    ]
+        .filter(Boolean)
+        .join(' ');
+
     useEffect(() => {
         if (gameOver) return;
-        if (live && !gameOver) setTime(0);
-    }, [!live, gameOver]);
+        if (!live && !gameOver) setTime(0);
+    }, [live, gameOver]);
 
     if (value) {
         return (
-            <div className="NumberDisplay">
+            <div className={classes}>
                 {value.toString().padStart(3, '0')}
             </div>
         );
     }
     return (
-        <div className="NumberDisplay">
+        <div className={classes}>
             {time.toString().padStart(3, '0')}
         </div>
     );

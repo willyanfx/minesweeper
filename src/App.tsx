@@ -1,12 +1,21 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Cells from '../Cells';
-import NumberDisplay from '../NumberDisplay';
-import { generateCells, openMultipleCells } from '../../utils';
-import { Cell, CellState, CellValue, Face } from '../../types';
-import { MAX_COLS, MAX_ROWS } from '../../constants';
+import Cells from './components/Cells';
+import NumberDisplay from './components/NumberDisplay';
+import { generateCells, openMultipleCells } from './utils';
+import {
+    Cell,
+    CellState,
+    CellValue,
+    Face,
+    Mode,
+    Theme,
+} from './types';
+import { MAX_COLS, MAX_ROWS } from './constants';
 
-import './App.scss';
+import './components/App/App.scss';
+import ThemeContext from './contexts/theme';
+import Dropdown from './components/Dropdown';
 
 const App: React.FC = () => {
     const [cells, setCells] = useState<Cell[][]>(generateCells());
@@ -15,6 +24,8 @@ const App: React.FC = () => {
     const [bombCounter, setBombCounter] = useState<number>(10);
     const [hasLost, setHasLost] = useState<boolean>(false);
     const [hasWon, setHasWon] = useState<boolean>(false);
+    const [themeMode, setThemeMode] = useState<Mode>(Mode.light);
+    const [theme, setTheme] = useState<Theme>(Theme.Skeuomorph);
 
     useEffect(() => {
         if (hasLost) {
@@ -180,28 +191,35 @@ const App: React.FC = () => {
     };
 
     return (
-        <div className="App">
-            <div className="Header">
-                <NumberDisplay value={bombCounter} />
-                <button
-                    className="Face"
-                    aria-label="start/reset"
-                    onClick={handleFaceClick}
+        <ThemeContext.Provider value={[theme, themeMode]}>
+            <Dropdown />
+            <div className={`${theme} ${theme}-${themeMode}`}>
+                <div
+                    className={`${theme}--header ${theme}--header-${themeMode}`}
                 >
-                    <span role="img">{face}</span>
-                </button>
-                <NumberDisplay live={live} gameOver={hasLost} />
+                    <NumberDisplay value={bombCounter} />
+                    <button
+                        className={`${theme}--face ${theme}--face-${themeMode}`}
+                        aria-label="start/reset"
+                        onClick={handleFaceClick}
+                    >
+                        <span role="img">{face}</span>
+                    </button>
+                    <NumberDisplay live={live} gameOver={hasLost} />
+                </div>
+                <div
+                    className={`${theme}--body ${theme}--body-${themeMode}`}
+                >
+                    <Cells
+                        state={cells}
+                        onClick={handleCellClick}
+                        onContext={handleCellContext}
+                        onMouseDown={handleMouseDown}
+                        onMouseUp={handleMouseUp}
+                    />
+                </div>
             </div>
-            <div className="Body">
-                <Cells
-                    state={cells}
-                    onClick={handleCellClick}
-                    onContext={handleCellContext}
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={handleMouseUp}
-                />
-            </div>
-        </div>
+        </ThemeContext.Provider>
     );
 };
 

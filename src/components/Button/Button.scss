@@ -1,51 +1,122 @@
 @import '../../styles/index.scss';
 
-.Button {
-  @include borders;
-  @include buttons;
-  align-items: center;
-  display: flex;
-  font-weight: bold;
-  height: 30px;
-  justify-content: center;
-  width: 30px;
+.classic--button {
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
 
-  &.visible {
-    border-color: #7b7b7b;
-    border-width: 1px;
-  }
+    &-light {
+        @include borders;
+        @include buttons;
+        &__visible {
+            border-color: #7b7b7b;
+            border-width: 1px;
+        }
 
-  &.red {
-    background: red;
-  }
+        &__red {
+            background: red;
+        }
+        &.value-1 {
+            color: blue;
+        }
+        &.value-2 {
+            color: green;
+        }
+        &.value-3 {
+            color: red;
+        }
+        &.value-4 {
+            color: purple;
+        }
+        &.value-5 {
+            color: maroon;
+        }
+        &.value-6 {
+            color: turquoise;
+        }
+        &.value-7 {
+            color: black;
+        }
+        &.value-8 {
+            color: gray;
+        }
+    }
+    &-dark {
+        @include borders;
+        @include buttons;
 
-  span {
-    font-size: 12px;
-    margin-left: 2px;
-  }
+        &__visible {
+            border-color: #cacaca;
+            border-width: 1px;
+        }
 
-  &.value-1 {
-    color: blue;
-  }
-  &.value-2 {
-    color: green;
-  }
-  &.value-3 {
-    color: red;
-  }
-  &.value-4 {
-    color: purple;
-  }
-  &.value-5 {
-    color: maroon;
-  }
-  &.value-6 {
-    color: turquoise;
-  }
-  &.value-7 {
-    color: black;
-  }
-  &.value-8 {
-    color: gray;
-  }
+        &__red {
+            background: tomato;
+        }
+        &.value-1 {
+            color: cadetblue;
+        }
+        &.value-2 {
+            color: plum;
+        }
+        &.value-3 {
+            color: palegreen;
+        }
+        &.value-4 {
+            color: paleturquoise;
+        }
+        &.value-5 {
+            color: palevioletred;
+        }
+        &.value-6 {
+            color: papayawhip;
+        }
+        &.value-7 {
+            color: peachpuff;
+        }
+        &.value-8 {
+            color: powderblue;
+        }
+    }
+
+    span {
+        font-size: 12px;
+        margin-left: 2px;
+    }
+}
+.skeuomorph--button {
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+
+    &-light {
+        background: linear-gradient(
+            180deg,
+            #efeff3 0%,
+            #f2f5f7 0.01%,
+            #dce7f2 100%
+        );
+        box-shadow: 0px 1.68px 1.68px #96bbe1,
+            0px 3.36px 4.2px rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+
+        &__visible {
+            background: #e3edf7;
+            box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48),
+                inset -3px -3px 7px #ffffff;
+            border-radius: 21px;
+        }
+        &__red {
+            background: #ef0000;
+            box-shadow: inset 3px 3px 7px rgba(140, 45, 45, 0.48),
+                inset -3px -3px 7px #ff9d9d;
+            border-radius: 21px;
+        }
+    }
 }

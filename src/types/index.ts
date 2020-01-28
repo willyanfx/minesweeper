@@ -27,3 +27,13 @@ export enum Face {
     lost = '😵',
     won = '😎',
 }
+
+export enum Mode {
+    dark = 'dark',
+    light = 'light',
+}
+export enum Theme {
+    classic = 'classic',
+    Skeuomorph = 'skeuomorph',
+    flat = 'flat',
+}
