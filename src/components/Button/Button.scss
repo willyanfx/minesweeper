@@ -8,6 +8,10 @@
     justify-content: center;
     width: 30px;
 
+    &:focus {
+        outline: none;
+    }
+
     &-light {
         @include borders;
         @include buttons;
@@ -94,6 +98,10 @@
     height: 30px;
     justify-content: center;
     width: 30px;
+
+    &:focus {
+        outline: none;
+    }
 
     &-light {
         background: linear-gradient(

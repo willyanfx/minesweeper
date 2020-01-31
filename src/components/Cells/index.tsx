@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import Button from '../Button';
+import { Cell } from '../../types';
 
 const Cells = ({
     state,
@@ -8,7 +9,7 @@ const Cells = ({
     onMouseDown,
     onMouseUp,
 }: any) => {
-    return state.map((row: any[], rowIndex: number) => {
+    return state.map((row: Cell[], rowIndex: number) => {
         return row.map((cell, colIndex) => (
             <Button
                 col={colIndex}
