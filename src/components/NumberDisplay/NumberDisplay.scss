@@ -17,16 +17,45 @@
 }
 .skeuomorph--numberDisplay {
     font-size: 40px;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &-light {
         background: linear-gradient(
             180deg,
-            #efeff3 0%,
-            #f2f5f7 0.01%,
+            #efeff3 -0.62%,
+            #f2f5f7 51.78%,
             #dce7f2 100%
         );
-        box-shadow: 0px 1.68317px 1.68317px #96bbe1,
-            0px 3.36634px 4.20792px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        color: #81a3c4;
+        // border: 1px solid #81a3c4;
+        box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48),
+            inset -3px -3px 7px #ffffff;
+
+        &__numbers {
+            position: relative;
+            font-family: Electronica-Normal, monospace;
+            font-style: normal;
+            font-weight: normal;
+            text-align: right;
+            overflow: hidden;
+            color: #31456a;
+        }
+    }
+
+    &-dark {
+        background: #333333;
+        box-shadow: inset 3px 3px 7px rgba(0, 0, 0, 0.48),
+            inset -3px -3px 7px #444444;
+        &__numbers {
+            position: relative;
+            font-family: Electronica-Normal, monospace;
+            font-style: normal;
+            font-weight: normal;
+            text-align: right;
+            overflow: hidden;
+            color: #999;
+        }
     }
 }

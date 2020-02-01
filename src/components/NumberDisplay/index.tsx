@@ -26,7 +26,11 @@ const NumberDisplay: React.FC<NumberDisplayProps> = ({
 
     return (
         <div className={classes}>
-            {value.toString().padStart(3, '0')}
+            <span
+                className={`${theme}--numberDisplay-${mode}__numbers`}
+            >
+                {value.toString().padStart(3, '0')}
+            </span>
         </div>
     );
 };

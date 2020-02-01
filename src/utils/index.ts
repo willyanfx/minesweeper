@@ -1,5 +1,20 @@
 import { MAX_COLS, MAX_ROWS, NO_OF_BOMBS } from '../constants';
 import { CellValue, CellState, Cell } from '../types';
+
+const difficultLevel = (type: any) => {
+    switch (type) {
+        case 'easy':
+            return { cols: 9, rows: 9, numOfBombs: 10 };
+        case 'medium':
+            return { cols: 16, rows: 16, numOfBombs: 40 };
+        case 'easy':
+            return { cols: 30, rows: 99, numOfBombs: 99 };
+
+        default:
+            return { cols: 8, rows: 8, numOfBombs: 10 };
+    }
+};
+
 const grabAllAdjacentCells = (
     cells: Cell[][],
     rowParam: number,

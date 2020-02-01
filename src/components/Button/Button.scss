@@ -113,6 +113,7 @@
         box-shadow: 0px 1.68px 1.68px #96bbe1,
             0px 3.36px 4.2px rgba(0, 0, 0, 0.1);
         border-radius: 50%;
+        margin: 1px;
 
         &__visible {
             background: #e3edf7;
@@ -125,6 +126,39 @@
             box-shadow: inset 3px 3px 7px rgba(140, 45, 45, 0.48),
                 inset -3px -3px 7px #ff9d9d;
             border-radius: 21px;
+        }
+    }
+    &-dark {
+        color: #9f9f9f;
+        background: linear-gradient(
+            180deg,
+            #404040 0%,
+            #555 0.01%,
+            #333 100%
+        );
+        box-shadow: 0px 1.68317px 1.68317px #666,
+            0px 3.36634px 4.20792px rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        margin: 1px;
+
+        &__visible {
+            background: linear-gradient(
+                348.69deg,
+                #666 5.21%,
+                #222 86.46%
+            );
+            box-shadow: 0px 1.68317px 1.68317px #666,
+                0px 3.36634px 4.20792px #000, inset 0px 1px 0px #888;
+        }
+        &__red {
+            background: linear-gradient(
+                348.69deg,
+                #de5959 5.21%,
+                #650000 86.46%
+            );
+            box-shadow: 0px 1.68317px 1.68317px #ff1010,
+                0px 3.36634px 4.20792px rgba(255, 146, 146, 0.1),
+                inset 0px 1px 0px #940f19;
         }
     }
 }
