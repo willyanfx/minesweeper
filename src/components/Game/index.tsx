@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useContext } from 'react';
-import ThemeContext from '../../contexts/theme';
+import ThemeContext from '../../contexts/GameContext';
 import { reducer, IState } from '../../reducer';
 import Cells from '../Cells';
 import { NumberDisplay, TimerDisplay } from '../NumberDisplay';

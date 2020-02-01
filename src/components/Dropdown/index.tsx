@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import './Dropdown.scss';
-import ThemeContext from '../../contexts/theme';
+import GameContext from '../../contexts/GameContext';
 
 function Dropdown() {
-    const [theme, mode] = useContext(ThemeContext);
+    const [theme, mode] = useContext(GameContext);
 
     const classes = [
         `${theme}--dropdown`,

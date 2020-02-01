@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './Button.scss';
 import { CellState, CellValue } from '../../types';
-import ThemeContext from '../../contexts/theme';
+import GameContext from '../../contexts/GameContext';
 
 interface ButtonProps {
     col: number;
@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
     onMouseDown,
     onMouseUp,
 }) => {
-    const [theme, mode] = useContext(ThemeContext);
+    const [theme, mode] = useContext(GameContext);
 
     const renderContent = (): React.ReactNode => {
         if (state === CellState.visible) {

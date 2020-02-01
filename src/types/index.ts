@@ -37,3 +37,8 @@ export enum Theme {
     Skeuomorph = 'skeuomorph',
     flat = 'flat',
 }
+export enum Difficult {
+    easy = 'easy',
+    medium = 'medium',
+    hard = 'hard',
+}
