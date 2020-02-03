@@ -49,7 +49,7 @@
         }
     }
     &-dark {
-        @include borders;
+        @include borders(#404040, #222);
         @include buttons;
 
         &__visible {

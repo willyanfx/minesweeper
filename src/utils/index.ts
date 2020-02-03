@@ -1,7 +1,7 @@
 import { MAX_COLS, MAX_ROWS, NO_OF_BOMBS } from '../constants';
-import { CellValue, CellState, Cell } from '../types';
+import { CellValue, CellState, Cell, Difficult } from '../types';
 
-const difficultLevel = (type: any) => {
+export const difficultLevel = (type: Difficult) => {
     switch (type) {
         case 'easy':
             return { cols: 9, rows: 9, numOfBombs: 10 };

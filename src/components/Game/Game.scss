@@ -28,11 +28,16 @@
     }
 
     &--body {
-        @include borders(#7b7b7b, white);
         display: grid;
         grid-template-columns: repeat(9, 1fr);
         grid-template-rows: repeat(9, 1fr);
         margin-top: 16px;
+        &-light {
+            @include borders(#7b7b7b, white);
+        }
+        &-dark {
+            @include borders(#000, #666);
+        }
     }
 
     &--face {

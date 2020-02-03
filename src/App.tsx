@@ -6,6 +6,7 @@ import usePersistedState from './hooks/usePersistedState';
 import Game from './components/Game';
 import GameContext from './contexts/GameContext';
 import Dropdown from './components/Dropdown';
+import { difficultLevel } from './utils';
 
 const initialState = {
     theme: Theme.classic,

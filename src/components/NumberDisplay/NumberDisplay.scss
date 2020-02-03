@@ -6,12 +6,14 @@
 
 .classic--numberDisplay {
     font-size: 40px;
+    padding-top: 4px;
+    font-family: 'Share Tech Mono', monospace;
     &-light {
         color: #ff0701;
         background: black;
     }
     &-dark {
-        color: #ff0701;
+        color: #e53e3e;
         background: black;
     }
 }
@@ -36,7 +38,7 @@
         &__numbers {
             position: relative;
             padding-top: 4px;
-            font-family: Electronica-Normal, monospace;
+            font-family: 'Share Tech Mono', monospace;
             font-style: normal;
             font-weight: normal;
             text-align: right;
@@ -46,9 +48,9 @@
     }
 
     &-dark {
-        background: #333333;
-        box-shadow: inset 3px 3px 7px rgba(0, 0, 0, 0.48),
-            inset -3px -3px 7px #444444;
+        background: #1a202c;
+        box-shadow: inset 3px 3px 7px rgba(0, 0, 0, 0.88),
+            inset -3px -3px 7px #444;
         &__numbers {
             position: relative;
             padding-top: 4px;
@@ -57,7 +59,7 @@
             font-weight: normal;
             text-align: right;
             overflow: hidden;
-            color: #999;
+            color: #e53e3e;
         }
     }
 }
