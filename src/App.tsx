@@ -34,6 +34,19 @@ const App: React.FC = () => {
 
     return (
         <>
+            <div
+                className={`${game.mode.includes(Mode.dark) &&
+                    'background-black'}`}
+            />
+            <div
+                className={`${game.mode.includes(Mode.dark) &&
+                    'night'} sun-moon`}
+                onClick={() =>
+                    game.mode === 'dark'
+                        ? setGame({ ...game, mode: Mode.light })
+                        : setGame({ ...game, mode: Mode.dark })
+                }
+            />
             <input type="checkbox" onChange={toggle} />
             <GameContext.Provider value={[game.theme, game.mode]}>
                 <Dropdown />

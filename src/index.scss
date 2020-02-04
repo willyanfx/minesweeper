@@ -5,14 +5,15 @@
     box-sizing: border-box;
 }
 
+:root {
+    --color-darkmode: #f5f8f8;
+    --color-primary: #00aef2;
+}
 html,
 body {
     height: 100%;
-    background: rgb(196, 196, 196);
-}
-
-:root {
-    --color-primary: #00aef2;
+    width: 100%;
+    background: var(--color-darkmode);
 }
 
 body {
@@ -78,3 +79,81 @@ button,
     -webkit-appearance: button;
 }
 @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap');
+
+.sun-moon {
+    position: absolute;
+    position: relative;
+    z-index: 0;
+    // left: 0;
+    right: 0;
+    // bottom: 0;
+    top: 0px;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #f5f8f8;
+    // background: transparent;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.sun-moon:before {
+    content: '';
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    background: #a5abb0;
+    transition: border-radius 0.5s ease, background-color 0.5s ease,
+        width 0.5s ease, transform 0.5s ease;
+}
+
+.sun-moon:after {
+    content: 'Light mode';
+    white-space: nowrap;
+    text-indent: 60px;
+    line-height: 45px;
+    z-index: 2000;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid #f5f8f8;
+    // border: 4px solid #333;
+    box-shadow: 0 0 0 0 #f5f8f8, 0 0 0 3px #a5abb0,
+        0 0 0 100px #f5f8f8;
+    // box-shadow: 0 0 0 0 #333, 0 0 0 3px #222, 0 0 0 100px #333;
+    box-sizing: border-box;
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.night.sun-moon {
+    background-color: #a5abb0;
+}
+
+.night.sun-moon:before {
+    background: #3f3f4c;
+    border-radius: 50%;
+    width: 150%;
+    transform: translate(-5%, -35%) rotate(-25deg);
+}
+
+.night.sun-moon:after {
+    content: 'Dark mode';
+    color: #fff;
+    box-shadow: 0 0 0 0 #3f3f4c, 0 0 0 0 #3f3f4c, 0 0 0 3px #a5abb0,
+        0 0 0 100px #3f3f4c;
+    border-color: #3f3f4c;
+}
+
+.background-black {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #3f3f4c;
+}

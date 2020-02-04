@@ -197,7 +197,7 @@ const Game: React.FC = () => {
     };
 
     return (
-        <div className={`${theme} ${theme}-${mode}`}>
+        <div className={`game ${theme} ${theme}-${mode}`}>
             <div
                 className={`${theme}--header ${theme}--header-${mode}`}
             >
