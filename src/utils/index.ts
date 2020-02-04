@@ -9,7 +9,6 @@ export const difficultLevel = (type: Difficult) => {
             return { cols: 16, rows: 16, numOfBombs: 40 };
         case 'easy':
             return { cols: 30, rows: 99, numOfBombs: 99 };
-
         default:
             return { cols: 8, rows: 8, numOfBombs: 10 };
     }
@@ -72,7 +71,6 @@ const grabAllAdjacentCells = (
 
 export const generateCells = (): Cell[][] => {
     let cells: Cell[][] = [];
-
     // generating all cells
     for (let row = 0; row < MAX_ROWS; row++) {
         cells.push([]);

@@ -42,3 +42,12 @@ export enum Difficult {
     medium = 'medium',
     hard = 'hard',
 }
+
+export enum ActionType {
+    hasWon = 'HAS_WON',
+    hasLost = 'HAS_LOST',
+    cells = 'CELLS',
+    newGame = 'NEWGAME',
+    live = 'LIVE',
+    face = 'FACE',
+}

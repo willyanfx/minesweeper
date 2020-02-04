@@ -1,16 +1,4 @@
-import { Cell, Face } from '../types';
-
-enum ActionType {
-    hasWon = 'HAS_WON',
-    hasLost = 'HAS_LOST',
-    darkMode = 'DARKMODE',
-    theme = 'THEME',
-    cells = 'CELLS',
-    newGame = 'NEWGAME',
-    live = 'LIVE',
-    face = 'FACE',
-    difficulty = 'DIFFICULTY',
-}
+import { Cell, Face, ActionType } from '../types';
 
 export interface IState {
     cells: Cell[][];

@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Mode, Theme, Difficult } from './types';
-import { MAX_COLS, MAX_ROWS } from './constants';
 import usePersistedState from './hooks/usePersistedState';
 import Game from './components/Game';
 import GameContext from './contexts/GameContext';
-import Dropdown from './components/Dropdown';
-import { difficultLevel } from './utils';
 
 const initialState = {
     theme: Theme.classic,
     mode: Mode.dark,
-    difficult: Difficult.easy,
 };
 
 interface IGameProps {
     theme: Theme;
     mode: Mode;
-    difficult: Difficult;
 }
 
 const App: React.FC = () => {
@@ -31,25 +26,28 @@ const App: React.FC = () => {
             ? setGame({ ...game, theme: Theme.Skeuomorph })
             : setGame({ ...game, theme: Theme.classic });
     };
+    const darkmode = () =>
+        game.mode === 'dark'
+            ? setGame({ ...game, mode: Mode.light })
+            : setGame({ ...game, mode: Mode.dark });
 
     return (
         <>
-            <div
-                className={`${game.mode.includes(Mode.dark) &&
-                    'background-black'}`}
-            />
-            <div
-                className={`${game.mode.includes(Mode.dark) &&
-                    'night'} sun-moon`}
-                onClick={() =>
-                    game.mode === 'dark'
-                        ? setGame({ ...game, mode: Mode.light })
-                        : setGame({ ...game, mode: Mode.dark })
-                }
-            />
-            <input type="checkbox" onChange={toggle} />
+            <nav className={`nav nav-${game.mode}`}>
+                <img src="" alt="logo" />
+
+                <div className="nav--items">
+                    <button role="switch" onClick={toggle}>
+                        {game.theme}
+                    </button>
+                    <div
+                        className={`${game.mode.includes(Mode.dark) &&
+                            'night'} sun-moon`}
+                        onClick={darkmode}
+                    />
+                </div>
+            </nav>
             <GameContext.Provider value={[game.theme, game.mode]}>
-                <Dropdown />
                 <Game />
             </GameContext.Provider>
         </>

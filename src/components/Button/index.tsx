@@ -7,6 +7,7 @@ interface ButtonProps {
     col: number;
     row: number;
     red?: boolean;
+    disabled?: boolean;
     state: CellState;
     value: CellValue;
     onClick(
@@ -31,6 +32,7 @@ const Button: React.FC<ButtonProps> = ({
     value,
     onMouseDown,
     onMouseUp,
+    disabled,
 }) => {
     const [theme, mode] = useContext(GameContext);
 
@@ -72,12 +74,13 @@ const Button: React.FC<ButtonProps> = ({
 
     return (
         <button
-            aria-label={`button-row${row}-column${col}`}
+            aria-label={`BUTTON row: ${row}, column: ${col}`}
             className={classes}
             onClick={onClick(row, col)}
             onContextMenu={onContext(row, col)}
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
+            disabled={disabled}
         >
             {renderContent()}
         </button>

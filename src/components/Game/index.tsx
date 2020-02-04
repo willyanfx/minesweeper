@@ -1,24 +1,23 @@
-import React, { useState, useReducer, useContext } from 'react';
+import React, {
+    useState,
+    useReducer,
+    useContext,
+    useEffect,
+} from 'react';
 import ThemeContext from '../../contexts/GameContext';
 import { reducer, IState } from '../../reducer';
 import Cells from '../Cells';
 import { NumberDisplay, TimerDisplay } from '../NumberDisplay';
 import { generateCells, openMultipleCells } from '../../utils';
-import { Cell, CellState, CellValue, Face } from '../../types';
+import {
+    Cell,
+    CellState,
+    CellValue,
+    Face,
+    ActionType,
+} from '../../types';
 import { MAX_COLS, MAX_ROWS } from '../../constants';
 import './Game.scss';
-
-enum ActionType {
-    hasWon = 'HAS_WON',
-    hasLost = 'HAS_LOST',
-    darkMode = 'DARKMODE',
-    theme = 'THEME',
-    cells = 'CELLS',
-    newGame = 'NEWGAME',
-    live = 'LIVE',
-    face = 'FACE',
-    difficulty = 'DIFFICULTY',
-}
 
 interface IAction {
     type: ActionType;
@@ -38,6 +37,7 @@ const initialState: IState = {
 const Game: React.FC = () => {
     const [bombCounter, setBombCounter] = useState<number>(10);
     const [theme, mode] = useContext(ThemeContext);
+
     const [state, dispatch] = useReducer<
         React.Reducer<IState, IAction>
     >(reducer, initialState);
@@ -163,22 +163,11 @@ const Game: React.FC = () => {
     // handle mouse event
     const handleMouseDown = (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    ) => {
-        if (state.hasLost) {
-            return;
-        } else {
-            dispatch({ type: ActionType.face, payload: Face.oh });
-        }
-    };
+    ) => dispatch({ type: ActionType.face, payload: Face.oh });
+
     const handleMouseUp = (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    ) => {
-        if (state.hasLost) {
-            return;
-        } else {
-            dispatch({ type: ActionType.face, payload: Face.smile });
-        }
-    };
+    ) => dispatch({ type: ActionType.face, payload: Face.smile });
 
     const showAllBombs = (): Cell[][] => {
         const currentCells = state.cells.slice();
@@ -213,6 +202,7 @@ const Game: React.FC = () => {
             </div>
             <div className={`${theme}--body ${theme}--body-${mode}`}>
                 <Cells
+                    disabled={state.hasLost}
                     state={state.cells}
                     onClick={
                         state.hasLost || state.hasWon

@@ -8,11 +8,13 @@ const Cells = ({
     onContext,
     onMouseDown,
     onMouseUp,
+    disabled,
 }: any) => {
     return state.map((row: Cell[], rowIndex: number) => {
         return row.map((cell, colIndex) => (
             <Button
                 col={colIndex}
+                disabled={disabled}
                 key={`${rowIndex}-${colIndex}`}
                 onClick={onClick}
                 onContext={onContext}

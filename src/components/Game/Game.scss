@@ -2,10 +2,14 @@
 
 .game {
     box-sizing: border-box;
+    z-index: 999999;
 }
 
 .classic {
     padding: 16px;
+    button:disabled {
+        color: black;
+    }
 
     &-light {
         @include borders(white, #999);
@@ -60,6 +64,9 @@
 .skeuomorph {
     padding: 16px;
     border-radius: 16px;
+    button:disabled {
+        color: black;
+    }
 
     &-light {
         background: #dce8f4;
