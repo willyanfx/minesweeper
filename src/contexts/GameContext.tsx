@@ -1,11 +1,12 @@
-import React, { Context } from 'react';
+import React, { createContext } from 'react';
 import { Mode, Theme } from '../types';
 export interface IGameContextProps {
     theme: Theme;
     mode: Mode;
-    difficult?: string;
 }
 
-const GameContext = React.createContext<any>([]);
+const GameContext = createContext<any>([]);
+const StateContext = createContext<any>({});
+const DispatchContext = createContext<any>({});
 
-export default GameContext;
+export { GameContext, StateContext, DispatchContext };

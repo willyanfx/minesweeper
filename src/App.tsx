@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 
 import { Mode, Theme, Difficult } from './types';
 import usePersistedState from './hooks/usePersistedState';
 import Game from './components/Game';
-import GameContext from './contexts/GameContext';
+import {
+    GameContext,
+    StateContext,
+    DispatchContext,
+} from './contexts/GameContext';
+import Nav from './components/Nav';
 
 const initialState = {
     theme: Theme.classic,
@@ -16,40 +21,19 @@ interface IGameProps {
 }
 
 const App: React.FC = () => {
-    const [game, setGame] = usePersistedState<IGameProps>(
-        'theme',
-        initialState,
-    );
-
-    const toggle = () => {
-        game.theme === 'classic'
-            ? setGame({ ...game, theme: Theme.Skeuomorph })
-            : setGame({ ...game, theme: Theme.classic });
+    const [game, setGame] = usePersistedState('theme', initialState);
+    const setVisual = ({ ...args }) => {
+        setGame({ ...game, ...args });
     };
-    const darkmode = () =>
-        game.mode === 'dark'
-            ? setGame({ ...game, mode: Mode.light })
-            : setGame({ ...game, mode: Mode.dark });
 
     return (
         <>
-            <nav className={`nav nav-${game.mode}`}>
-                <img src="" alt="logo" />
-
-                <div className="nav--items">
-                    <button role="switch" onClick={toggle}>
-                        {game.theme}
-                    </button>
-                    <div
-                        className={`${game.mode.includes(Mode.dark) &&
-                            'night'} sun-moon`}
-                        onClick={darkmode}
-                    />
-                </div>
-            </nav>
-            <GameContext.Provider value={[game.theme, game.mode]}>
-                <Game />
-            </GameContext.Provider>
+            <DispatchContext.Provider value={setVisual}>
+                <StateContext.Provider value={game}>
+                    <Nav />
+                    <Game />
+                </StateContext.Provider>
+            </DispatchContext.Provider>
         </>
     );
 };

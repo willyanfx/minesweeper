@@ -4,7 +4,7 @@ import React, {
     useContext,
     useEffect,
 } from 'react';
-import ThemeContext from '../../contexts/GameContext';
+import { StateContext } from '../../contexts/GameContext';
 import { reducer, IState } from '../../reducer';
 import Cells from '../Cells';
 import { NumberDisplay, TimerDisplay } from '../NumberDisplay';
@@ -36,7 +36,7 @@ const initialState: IState = {
 
 const Game: React.FC = () => {
     const [bombCounter, setBombCounter] = useState<number>(10);
-    const [theme, mode] = useContext(ThemeContext);
+    const { theme, mode } = useContext(StateContext);
 
     const [state, dispatch] = useReducer<
         React.Reducer<IState, IAction>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './NumberDisplay.scss';
 import useInterval from '../../hooks/useInterval';
-import GameContext from '../../contexts/GameContext';
+import { StateContext } from '../../contexts/GameContext';
 
 type NumberDisplayProps = {
     value?: number;
@@ -14,8 +14,7 @@ type TimerDisplayProps = {
 const NumberDisplay: React.FC<NumberDisplayProps> = ({
     value = 10,
 }) => {
-    const [theme, mode] = useContext(GameContext);
-
+    const { theme, mode } = useContext(StateContext);
     const classes = [
         'numberDisplay',
         `${theme}--numberDisplay`,

@@ -35,7 +35,6 @@ export enum Mode {
 export enum Theme {
     classic = 'classic',
     Skeuomorph = 'skeuomorph',
-    flat = 'flat',
 }
 export enum Difficult {
     easy = 'easy',
