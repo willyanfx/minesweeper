@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Button.scss';
 import { CellState, CellValue } from '../../types';
+import {
+    GameContext,
+    StateContext,
+} from '../../contexts/GameContext';
 
 interface ButtonProps {
     col: number;
     row: number;
     red?: boolean;
+    disabled?: boolean;
     state: CellState;
     value: CellValue;
     onClick(
@@ -30,7 +35,11 @@ const Button: React.FC<ButtonProps> = ({
     value,
     onMouseDown,
     onMouseUp,
+    disabled,
 }) => {
+    const { theme, mode } = useContext(StateContext);
+    console.log(mode);
+
     const renderContent = (): React.ReactNode => {
         if (state === CellState.visible) {
             if (value === CellValue.bomb) {
@@ -55,16 +64,27 @@ const Button: React.FC<ButtonProps> = ({
         return null;
     };
 
+    const classes = [
+        `${theme}--button`,
+        `${theme}--button-${mode}`,
+        state === CellState.visible
+            ? `${theme}--button-${mode}__visible`
+            : '',
+        `value-${value}`,
+        red ? `${theme}--button-${mode}__red` : '',
+    ]
+        .filter(Boolean)
+        .join(' ');
+
     return (
         <button
-            aria-label={`button-row${row}-column${col}`}
-            className={`Button ${
-                state === CellState.visible ? 'visible' : ''
-            } value-${value} ${red ? 'red' : ''}`}
+            aria-label={`BUTTON row: ${row}, column: ${col}`}
+            className={classes}
             onClick={onClick(row, col)}
             onContextMenu={onContext(row, col)}
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
+            disabled={disabled}
         >
             {renderContent()}
         </button>

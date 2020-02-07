@@ -1,44 +1,53 @@
-import React, { useEffect, useState, useMemo } from 'react';
-
+import React, {
+    useState,
+    useReducer,
+    useContext,
+    useEffect,
+} from 'react';
+import { StateContext } from '../../contexts/GameContext';
+import { reducer, IState } from '../../reducer';
 import Cells from '../Cells';
-import NumberDisplay from '../NumberDisplay';
+import { NumberDisplay, TimerDisplay } from '../NumberDisplay';
 import { generateCells, openMultipleCells } from '../../utils';
-import { Cell, CellState, CellValue, Face } from '../../types';
+import {
+    Cell,
+    CellState,
+    CellValue,
+    Face,
+    ActionType,
+} from '../../types';
 import { MAX_COLS, MAX_ROWS } from '../../constants';
+import './Game.scss';
 
-import './App.scss';
+interface IAction {
+    type: ActionType;
+    payload?: boolean | number | Cell[][] | Face;
+}
 
-const App: React.FC = () => {
-    const [cells, setCells] = useState<Cell[][]>(generateCells());
-    const [face, setFace] = useState<Face>(Face.smile);
-    const [live, setLive] = useState<boolean>(false);
+const initialState: IState = {
+    cells: generateCells(),
+    live: false,
+    newGame: true,
+    hasWon: false,
+    hasLost: false,
+    face: Face.smile,
+    timer: false,
+};
+
+const Game: React.FC = () => {
     const [bombCounter, setBombCounter] = useState<number>(10);
-    const [hasLost, setHasLost] = useState<boolean>(false);
-    const [hasWon, setHasWon] = useState<boolean>(false);
+    const { theme, mode } = useContext(StateContext);
 
-    useEffect(() => {
-        if (hasLost) {
-            setLive(false);
-            setFace(Face.lost);
-        }
-    }, [hasLost]);
-
-    useEffect(() => {
-        if (hasWon) {
-            setLive(false);
-            setFace(Face.won);
-        }
-    }, [hasWon]);
+    const [state, dispatch] = useReducer<
+        React.Reducer<IState, IAction>
+    >(reducer, initialState);
 
     const handleCellClick = (
         rowParam: number,
         colParam: number,
     ) => (): void => {
-        let newCells = cells.slice();
-
-        if (hasLost) return;
-        // start the game
-        if (!live) {
+        let newCells = state.cells.slice();
+        if (!state.live) {
             let isABomb =
                 newCells[rowParam][colParam].value === CellValue.bomb;
             while (isABomb) {
@@ -51,7 +60,7 @@ const App: React.FC = () => {
                     break;
                 }
             }
-            setLive(true);
+            dispatch({ type: ActionType.live, payload: true });
         }
 
         const currentCell = newCells[rowParam][colParam];
@@ -65,10 +74,9 @@ const App: React.FC = () => {
         }
 
         if (currentCell.value === CellValue.bomb) {
-            setHasLost(true);
             newCells[rowParam][colParam].red = true;
             newCells = showAllBombs();
-            setCells(newCells);
+            dispatch({ type: ActionType.hasLost, payload: newCells });
             return;
         } else if (currentCell.value === CellValue.none) {
             newCells = openMultipleCells(
@@ -108,10 +116,10 @@ const App: React.FC = () => {
                     return cell;
                 }),
             );
-            setHasWon(true);
+            dispatch({ type: ActionType.hasWon });
         }
 
-        setCells(newCells);
+        dispatch({ type: ActionType.cells, payload: newCells });
     };
 
     const handleCellContext = (
@@ -120,51 +128,49 @@ const App: React.FC = () => {
     ) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
         e.preventDefault();
 
-        if (!live) {
-            return;
-        }
+        if (state.hasLost || state.hasWon) return;
 
-        const currentCells = cells.slice();
-        const currentCell = cells[rowParam][colParam];
+        const currentCells = state.cells.slice();
+        const currentCell = state.cells[rowParam][colParam];
 
         if (currentCell.state === CellState.visible) {
             return;
         } else if (currentCell.state === CellState.open) {
             currentCells[rowParam][colParam].state =
                 CellState.flagged;
-            setCells(currentCells);
+            dispatch({
+                type: ActionType.cells,
+                payload: currentCells,
+            });
             setBombCounter(bombCounter - 1);
         } else if (currentCell.state === CellState.flagged) {
             currentCells[rowParam][colParam].state = CellState.open;
-            setCells(currentCells);
+            dispatch({
+                type: ActionType.cells,
+                payload: currentCells,
+            });
             setBombCounter(bombCounter + 1);
         }
     };
 
     const handleFaceClick = (): void => {
-        setLive(false);
-        setFace(Face.smile);
-        setCells(generateCells());
-        setHasLost(false);
-        setHasWon(false);
+        dispatch({
+            type: ActionType.newGame,
+            payload: generateCells(),
+        });
     };
 
     // handle mouse event
     const handleMouseDown = (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    ) => {
-        if (hasLost) return;
-        setFace(Face.oh);
-    };
+    ) => dispatch({ type: ActionType.face, payload: Face.oh });
+
     const handleMouseUp = (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    ) => {
-        if (hasLost) return;
-        setFace(Face.smile);
-    };
+    ) => dispatch({ type: ActionType.face, payload: Face.smile });
 
     const showAllBombs = (): Cell[][] => {
-        const currentCells = cells.slice();
+        const currentCells = state.cells.slice();
         return currentCells.map(row =>
             row.map(cell => {
                 if (cell.value === CellValue.bomb) {
@@ -180,22 +186,29 @@ const App: React.FC = () => {
     };
 
     return (
-        <div className="App">
-            <div className="Header">
+        <div className={`game ${theme} ${theme}-${mode}`}>
+            <div
+                className={`${theme}--header ${theme}--header-${mode}`}
+            >
                 <NumberDisplay value={bombCounter} />
                 <button
-                    className="Face"
+                    className={`${theme}--face ${theme}--face-${mode}`}
                     aria-label="start/reset"
                     onClick={handleFaceClick}
                 >
-                    <span role="img">{face}</span>
+                    <span role="img">{state.face}</span>
                 </button>
-                <NumberDisplay live={live} gameOver={hasLost} />
+                <TimerDisplay live={state.live} timer={state.timer} />
             </div>
-            <div className="Body">
+            <div className={`${theme}--body ${theme}--body-${mode}`}>
                 <Cells
-                    state={cells}
-                    onClick={handleCellClick}
+                    disabled={state.hasLost}
+                    state={state.cells}
+                    onClick={
+                        state.hasLost || state.hasWon
+                            ? () => {}
+                            : handleCellClick
+                    }
                     onContext={handleCellContext}
                     onMouseDown={handleMouseDown}
                     onMouseUp={handleMouseUp}
@@ -205,4 +218,4 @@ const App: React.FC = () => {
     );
 };
 
-export default App;
+export default Game;

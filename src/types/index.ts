@@ -27,3 +27,26 @@ export enum Face {
     lost = '😵',
     won = '😎',
 }
+
+export enum Mode {
+    dark = 'dark',
+    light = 'light',
+}
+export enum Theme {
+    classic = 'classic',
+    Skeuomorph = 'skeuomorph',
+}
+export enum Difficult {
+    easy = 'easy',
+    medium = 'medium',
+    hard = 'hard',
+}
+
+export enum ActionType {
+    hasWon = 'HAS_WON',
+    hasLost = 'HAS_LOST',
+    cells = 'CELLS',
+    newGame = 'NEWGAME',
+    live = 'LIVE',
+    face = 'FACE',
+}

@@ -1,40 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './NumberDisplay.scss';
 import useInterval from '../../hooks/useInterval';
+import { StateContext } from '../../contexts/GameContext';
 
-interface NumberDisplayProps {
+type NumberDisplayProps = {
     value?: number;
-    live?: boolean;
-    gameOver?: boolean;
-}
+};
+type TimerDisplayProps = {
+    live: boolean;
+    timer: boolean;
+};
 
 const NumberDisplay: React.FC<NumberDisplayProps> = ({
-    value,
-    live = false,
-    gameOver,
+    value = 10,
 }) => {
-    const [time, setTime] = useState<number>(0);
-    useInterval(() => {
-        setTime(time + 1);
-    }, live);
+    const { theme, mode } = useContext(StateContext);
+    const classes = [
+        'numberDisplay',
+        `${theme}--numberDisplay`,
+        `${theme}--numberDisplay-${mode}`,
+    ]
+        .filter(Boolean)
+        .join(' ');
 
-    useEffect(() => {
-        if (gameOver) return;
-        if (live && !gameOver) setTime(0);
-    }, [!live, gameOver]);
-
-    if (value) {
-        return (
-            <div className="NumberDisplay">
-                {value.toString().padStart(3, '0')}
-            </div>
-        );
-    }
     return (
-        <div className="NumberDisplay">
-            {time.toString().padStart(3, '0')}
+        <div className={classes}>
+            <span
+                className={`${theme}--numberDisplay-${mode}__numbers`}
+            >
+                {value.toString().padStart(3, '0')}
+            </span>
         </div>
     );
 };
 
-export default NumberDisplay;
+const TimerDisplay: React.FC<TimerDisplayProps> = ({
+    live = false,
+    timer,
+}) => {
+    const [time, setTime] = useState<number>(0);
+
+    useInterval(() => {
+        if (live && time < 999) {
+            setTime(time + 1);
+        }
+    }, live);
+    useEffect(() => {
+        setTime(0);
+    }, [timer]);
+
+    return <NumberDisplay value={time} />;
+};
+
+export { NumberDisplay, TimerDisplay };
