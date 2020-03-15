@@ -35,12 +35,14 @@ export const reducer: React.Reducer<IState, IAction> = (
                 hasLost: true,
                 live: false,
                 face: Face.lost,
+                timer: false,
             };
         case ActionType.hasWon:
             return {
                 ...state,
                 hasWon: true,
                 live: false,
+                timer: false,
             };
         case ActionType.live:
             return {

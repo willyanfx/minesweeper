@@ -6,6 +6,7 @@ import {
     StateContext,
     DispatchContext,
 } from '../../contexts/GameContext';
+import { Logo } from '../assets/Logo';
 
 export default function Nav() {
     const game = useContext(StateContext);
@@ -37,7 +38,9 @@ export default function Nav() {
 
     return (
         <header className={classes}>
-            <div className="logo">LOGO</div>
+            <div className="logo">
+                <Logo />
+            </div>
             <div className="options">
                 <button
                     onClick={() =>
