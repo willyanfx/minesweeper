@@ -8,21 +8,26 @@ import {
 } from '../../contexts/GameContext';
 
 export default function Nav() {
-    const [darkMode, setDarkMode] = React.useState(false);
-    const [theme, setTheme] = React.useState(Theme.Skeuomorph);
     const game = useContext(StateContext);
+    const [darkMode, setDarkMode] = React.useState(game.mode === 'dark' ? false : true);
+    const [theme, setTheme] = React.useState(game.theme);
     const setVisual = useContext(DispatchContext);
 
-    useEffect(() => {
+
+
+    function toggleDark() {
+        darkMode === false
+            ? setDarkMode(true)
+            : setDarkMode(false)
         const mode = darkMode ? Mode.dark : Mode.light;
         setVisual({ mode });
-    }, [darkMode]);
+    }
 
     useEffect(() => {
         setVisual({ theme });
     }, [theme]);
 
-    console.log(theme)
+
 
     const classes = ['nav',
         `nav-${game.theme}-${game.mode}`
@@ -45,11 +50,7 @@ export default function Nav() {
                 </button>
                 <div
                     id="toggle"
-                    onClick={() =>
-                        darkMode === false
-                            ? setDarkMode(true)
-                            : setDarkMode(false)
-                    }
+                    onClick={toggleDark}
                 >
                     <div
                         className={`${darkMode &&
