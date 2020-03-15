@@ -42,7 +42,7 @@ const Button: React.FC<ButtonProps> = ({
         if (state === CellState.visible) {
             if (value === CellValue.bomb) {
                 return (
-                    <span role="img" aria-label="bomb">
+                    <span role="img" data-bomb aria-label="bomb">
                         💣
                     </span>
                 );

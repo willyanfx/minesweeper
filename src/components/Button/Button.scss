@@ -1,5 +1,9 @@
 @import '../../styles/index.scss';
 
+[data-bomb] {
+    color: #000;
+}
+
 .classic--button {
     align-items: center;
     display: flex;
@@ -127,9 +131,36 @@
                 inset -3px -3px 7px #ff9d9d;
             border-radius: 21px;
         }
+
+        &__red {
+            background: #fc3c00;
+        }
+        &.value-1 {
+            color: #0086ff;
+        }
+        &.value-2 {
+            color: #f06500;
+        }
+        &.value-3 {
+            color: #8d8bff;
+        }
+        &.value-4 {
+            color: #00c35a;
+        }
+        &.value-5 {
+            color: #fcd400;
+        }
+        &.value-6 {
+            color: #fc3c00;
+        }
+        &.value-7 {
+            color: #9c00fc;
+        }
+        &.value-8 {
+            color: #fc0079;
+        }
     }
     &-dark {
-        color: #9f9f9f;
         background: linear-gradient(
             180deg,
             #404040 0%,
@@ -160,6 +191,31 @@
             box-shadow: 0px 1.68317px 1.68317px #ff1010,
                 0px 3.36634px 4.20792px rgba(255, 146, 146, 0.1),
                 inset 0px 1px 0px #940f19;
+        }
+
+        &.value-1 {
+            color: cadetblue;
+        }
+        &.value-2 {
+            color: plum;
+        }
+        &.value-3 {
+            color: palegreen;
+        }
+        &.value-4 {
+            color: paleturquoise;
+        }
+        &.value-5 {
+            color: palevioletred;
+        }
+        &.value-6 {
+            color: papayawhip;
+        }
+        &.value-7 {
+            color: peachpuff;
+        }
+        &.value-8 {
+            color: powderblue;
         }
     }
 }
