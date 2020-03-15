@@ -324,3 +324,13 @@ export const openMultipleCells = (
 
     return newCells;
 };
+
+export function backgroundColor(theme: any) {
+    if (theme.theme === 'classic') {
+        return theme.mode === 'light' ? 'teal' : '#666';
+    } else {
+        return theme.mode === 'light'
+            ? 'linear-gradient(to top, #279EFF  0%, #0086FF 100%)'
+            : 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898';
+    }
+}

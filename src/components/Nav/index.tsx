@@ -22,7 +22,11 @@ export default function Nav() {
         setVisual({ theme });
     }, [theme]);
 
-    const classes = [darkMode ? 'dark-mode' : null, 'nav']
+    console.log(theme)
+
+    const classes = ['nav',
+        `nav-${game.theme}-${game.mode}`
+    ]
         .filter(Boolean)
         .join(' ');
 

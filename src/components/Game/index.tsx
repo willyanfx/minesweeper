@@ -190,35 +190,41 @@ const Game: React.FC = () => {
     };
 
     return (
-        <div className={`game ${theme} ${theme}-${mode}`}>
-            <div
-                className={`${theme}--header ${theme}--header-${mode}`}
-            >
-                <NumberDisplay value={bombCounter} />
-                <button
-                    className={`${theme}--face ${theme}--face-${mode}`}
-                    aria-label="start/reset"
-                    onClick={handleFaceClick}
+        <>
+            <div className="result">
+                {state.hasWon && (<h1>Congrats <span>🎉</span></h1>)}
+                {state.hasLost && (<h1>Game Over <span>😭</span></h1>)}
+            </div>
+            <div className={`game ${theme} ${theme}-${mode}`}>
+                <div
+                    className={`${theme}--header ${theme}--header-${mode}`}
                 >
-                    <span role="img">{state.face}</span>
-                </button>
-                <TimerDisplay live={state.live} timer={state.timer} />
+                    <NumberDisplay value={bombCounter} />
+                    <button
+                        className={`${theme}--face ${theme}--face-${mode}`}
+                        aria-label="start/reset"
+                        onClick={handleFaceClick}
+                    >
+                        <span role="img">{state.face}</span>
+                    </button>
+                    <TimerDisplay live={state.live} timer={state.timer} />
+                </div>
+                <div className={`${theme}--body ${theme}--body-${mode}`}>
+                    <Cells
+                        disabled={state.hasLost}
+                        state={cells}
+                        onClick={
+                            state.hasLost || state.hasWon
+                                ? () => { }
+                                : handleCellClick
+                        }
+                        onContext={handleCellContext}
+                        onMouseDown={handleMouseDown}
+                        onMouseUp={handleMouseUp}
+                    />
+                </div>
             </div>
-            <div className={`${theme}--body ${theme}--body-${mode}`}>
-                <Cells
-                    disabled={state.hasLost}
-                    state={cells}
-                    onClick={
-                        state.hasLost || state.hasWon
-                            ? () => { }
-                            : handleCellClick
-                    }
-                    onContext={handleCellContext}
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={handleMouseUp}
-                />
-            </div>
-        </div>
+        </>
     );
 };
 

@@ -1,7 +1,7 @@
+@import '../../styles/index.scss';
+
 .nav {
-    --nav-background: #cacaca;
     height: 60px;
-    background: var(--nav-background);
     color: #fff;
     display: flex;
     align-items: center;
@@ -66,21 +66,48 @@
     }
 }
 
-// Dark Mode styling
-//-------------------------------------
+.nav-skeuomorph {
+    &-light {
+        background: #0e8cfe;
+        box-shadow: 8px 40px 96px rgba(18, 61, 101, 0.14),
+            inset -8px -6px 80px rgba(255, 255, 255, 0.18);
+    }
+    &-dark {
+        background: linear-gradient(
+            200.6deg,
+            #353a40 -3.02%,
+            #121416 93.08%
+        );
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2),
+            0px 1px 18px rgba(0, 0, 0, 0.12),
+            0px 6px 10px rgba(0, 0, 0, 0.14);
 
-.dark-mode {
-    color: white;
-    --nav-background: #333;
-    #app {
-        background-color: #1a202c;
+        #toggle {
+            background-color: white;
+
+            .toggle-inner {
+                background-color: #1a202c;
+            }
+        }
+    }
+}
+
+.nav-classic {
+    &-light {
+        @include borders(white, #999);
+        background: #c2c2c2;
     }
 
-    #toggle {
-        background-color: white;
+    &-dark {
+        @include borders(#5c5c5c, rgb(147, 147, 147));
+        background: #333;
 
-        .toggle-inner {
-            background-color: #1a202c;
+        #toggle {
+            background-color: white;
+
+            .toggle-inner {
+                background-color: #1a202c;
+            }
         }
     }
 }
