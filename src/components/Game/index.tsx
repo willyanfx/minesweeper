@@ -25,7 +25,6 @@ interface IAction {
 }
 
 const initialState: IState = {
-    cells: generateCells(),
     live: false,
     newGame: true,
     hasWon: false,
@@ -36,6 +35,7 @@ const initialState: IState = {
 
 const Game: React.FC = () => {
     const [bombCounter, setBombCounter] = useState<number>(10);
+    const [cells, setCells] = useState<Cell[][]>(generateCells());
     const { theme, mode } = useContext(StateContext);
 
     const [state, dispatch] = useReducer<
@@ -46,7 +46,7 @@ const Game: React.FC = () => {
         rowParam: number,
         colParam: number,
     ) => (): void => {
-        let newCells = state.cells.slice();
+        let newCells = cells.slice();
         if (!state.live) {
             let isABomb =
                 newCells[rowParam][colParam].value === CellValue.bomb;
@@ -76,7 +76,9 @@ const Game: React.FC = () => {
         if (currentCell.value === CellValue.bomb) {
             newCells[rowParam][colParam].red = true;
             newCells = showAllBombs();
-            dispatch({ type: ActionType.hasLost, payload: newCells });
+
+            setCells(newCells)
+            dispatch({ type: ActionType.hasLost });
             return;
         } else if (currentCell.value === CellValue.none) {
             newCells = openMultipleCells(
@@ -119,7 +121,9 @@ const Game: React.FC = () => {
             dispatch({ type: ActionType.hasWon });
         }
 
-        dispatch({ type: ActionType.cells, payload: newCells });
+
+        setCells(newCells)
+
     };
 
     const handleCellContext = (
@@ -130,33 +134,33 @@ const Game: React.FC = () => {
 
         if (state.hasLost || state.hasWon) return;
 
-        const currentCells = state.cells.slice();
-        const currentCell = state.cells[rowParam][colParam];
+        const currentCells = cells.slice();
+        const currentCell = cells[rowParam][colParam];
 
         if (currentCell.state === CellState.visible) {
             return;
         } else if (currentCell.state === CellState.open) {
             currentCells[rowParam][colParam].state =
                 CellState.flagged;
-            dispatch({
-                type: ActionType.cells,
-                payload: currentCells,
-            });
+
+            setCells(currentCells)
             setBombCounter(bombCounter - 1);
         } else if (currentCell.state === CellState.flagged) {
             currentCells[rowParam][colParam].state = CellState.open;
+
+            setCells(currentCells)
             dispatch({
                 type: ActionType.cells,
-                payload: currentCells,
             });
             setBombCounter(bombCounter + 1);
         }
     };
 
     const handleFaceClick = (): void => {
+
+        setCells(generateCells())
         dispatch({
-            type: ActionType.newGame,
-            payload: generateCells(),
+            type: ActionType.newGame
         });
     };
 
@@ -170,7 +174,7 @@ const Game: React.FC = () => {
     ) => dispatch({ type: ActionType.face, payload: Face.smile });
 
     const showAllBombs = (): Cell[][] => {
-        const currentCells = state.cells.slice();
+        const currentCells = cells.slice();
         return currentCells.map(row =>
             row.map(cell => {
                 if (cell.value === CellValue.bomb) {
@@ -203,10 +207,10 @@ const Game: React.FC = () => {
             <div className={`${theme}--body ${theme}--body-${mode}`}>
                 <Cells
                     disabled={state.hasLost}
-                    state={state.cells}
+                    state={cells}
                     onClick={
                         state.hasLost || state.hasWon
-                            ? () => {}
+                            ? () => { }
                             : handleCellClick
                     }
                     onContext={handleCellContext}

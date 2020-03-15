@@ -1,7 +1,6 @@
 import { Cell, Face, ActionType } from '../types';
 
 export interface IState {
-    cells: Cell[][];
     face: Face;
     live: boolean;
     newGame: boolean;
@@ -20,12 +19,9 @@ export const reducer: React.Reducer<IState, IAction> = (
     action,
 ): any => {
     switch (action.type) {
-        case ActionType.cells:
-            return { ...state, cells: action.payload, timer: false };
         case ActionType.newGame:
             return {
                 ...state,
-                cells: action.payload,
                 newGame: true,
                 live: false,
                 hasLost: false,
@@ -37,14 +33,12 @@ export const reducer: React.Reducer<IState, IAction> = (
             return {
                 ...state,
                 hasLost: true,
-                cells: action.payload,
                 live: false,
                 face: Face.lost,
             };
         case ActionType.hasWon:
             return {
                 ...state,
-                cells: action.payload,
                 hasWon: true,
                 live: false,
             };

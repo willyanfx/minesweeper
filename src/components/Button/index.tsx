@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import './Button.scss';
 import { CellState, CellValue } from '../../types';
 import {
-    GameContext,
     StateContext,
 } from '../../contexts/GameContext';
 
@@ -38,7 +37,6 @@ const Button: React.FC<ButtonProps> = ({
     disabled,
 }) => {
     const { theme, mode } = useContext(StateContext);
-    console.log(mode);
 
     const renderContent = (): React.ReactNode => {
         if (state === CellState.visible) {
