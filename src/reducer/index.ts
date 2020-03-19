@@ -33,16 +33,16 @@ export const reducer: React.Reducer<IState, IAction> = (
             return {
                 ...state,
                 hasLost: true,
+                newGame: false,
                 live: false,
                 face: Face.lost,
-                timer: false,
             };
         case ActionType.hasWon:
             return {
                 ...state,
                 hasWon: true,
+                newGame: false,
                 live: false,
-                timer: false,
             };
         case ActionType.live:
             return {

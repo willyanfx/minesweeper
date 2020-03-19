@@ -157,7 +157,6 @@ const Game: React.FC = () => {
     };
 
     const handleFaceClick = (): void => {
-
         setCells(generateCells())
         dispatch({
             type: ActionType.newGame
