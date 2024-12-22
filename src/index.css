@@ -1,3 +1,10 @@
+:root {
+    --color-darkmode: #f5f8f8;
+    --color-primary: #00aef2;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap');
+
 *,
 *::before,
 *::after {
@@ -5,10 +12,6 @@
     box-sizing: border-box;
 }
 
-:root {
-    --color-darkmode: #f5f8f8;
-    --color-primary: #00aef2;
-}
 html,
 body {
     height: 100%;
@@ -37,38 +40,30 @@ input,
 optgroup,
 select,
 textarea {
-    font-family: inherit; /* 1 */
-    font-size: 100%; /* 1 */
-    line-height: 1.15; /* 1 */
-    margin: 0; /* 2 */
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
     background: none;
     border: none;
 }
 
-/**
- * Show the overflow in IE.
- * 1. Show the overflow in Edge.
- */
-
 button,
 input {
-    /* 1 */
     overflow: visible;
 }
 
 button,
 select {
-    /* 1 */
     text-transform: none;
 }
 
-button,
 [type='button'],
 [type='reset'],
-[type='submit'] {
+[type='submit'],
+button {
     -webkit-appearance: button;
 }
-@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap');
 
 #root {
     width: 100%;
@@ -81,16 +76,13 @@ button,
 }
 
 .sun-moon {
-    // position: absolute;
     position: relative;
     z-index: 0;
-
     margin: 16px;
     width: 25px;
     height: 25px;
     border-radius: 50%;
     background: #f5f8f8;
-    // background: transparent;
     box-sizing: border-box;
     cursor: pointer;
     transition: background-color 0.5s ease;
@@ -149,28 +141,4 @@ button,
     left: 0;
     width: 100%;
     height: 100%;
-    // background: #3f3f4c;
-}
-
-.nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    &-light {
-        background: #fff;
-    }
-    &-dark {
-        background: #3f3f4c;
-    }
-    img {
-        flex-grow: 3;
-    }
-    &--items {
-        display: flex;
-    }
 }

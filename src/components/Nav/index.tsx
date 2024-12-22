@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import './Nav.scss';
+import './Nav.css';
 import { Mode, Theme, Difficult } from '../../types';
 
 import {
@@ -10,16 +10,14 @@ import { Logo } from '../assets/Logo';
 
 export default function Nav() {
     const game = useContext(StateContext);
-    const [darkMode, setDarkMode] = React.useState(game.mode === 'dark' ? false : true);
+    const [darkMode, setDarkMode] = React.useState(
+        game.mode === 'dark' ? false : true,
+    );
     const [theme, setTheme] = React.useState(game.theme);
     const setVisual = useContext(DispatchContext);
 
-
-
     function toggleDark() {
-        darkMode === false
-            ? setDarkMode(true)
-            : setDarkMode(false)
+        darkMode === false ? setDarkMode(true) : setDarkMode(false);
         const mode = darkMode ? Mode.dark : Mode.light;
         setVisual({ mode });
     }
@@ -28,11 +26,7 @@ export default function Nav() {
         setVisual({ theme });
     }, [theme]);
 
-
-
-    const classes = ['nav',
-        `nav-${game.theme}-${game.mode}`
-    ]
+    const classes = ['nav', `nav-${game.theme}-${game.mode}`]
         .filter(Boolean)
         .join(' ');
 
@@ -51,13 +45,11 @@ export default function Nav() {
                 >
                     {theme}
                 </button>
-                <div
-                    id="toggle"
-                    onClick={toggleDark}
-                >
+                <div id="toggle" onClick={toggleDark}>
                     <div
-                        className={`${darkMode &&
-                            'toggle-active'} toggle-inner`}
+                        className={`${
+                            darkMode && 'toggle-active'
+                        } toggle-inner`}
                     />
                 </div>
             </div>

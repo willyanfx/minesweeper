@@ -1,0 +1,230 @@
+[data-bomb] {
+    color: #000;
+}
+
+.classic--button {
+    align-items: center;
+    display: flex;
+    font-weight: 700;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.classic--button:focus {
+    outline: none;
+}
+
+.classic--button-light {
+    border-color: #fff #7b7b7b #7b7b7b #fff;
+    border-style: solid;
+    border-width: 4px;
+}
+
+.classic--button-light:active {
+    border-color: #7b7b7b #fff #fff #7b7b7b;
+}
+
+.classic--button-light__visible {
+    border-color: #7b7b7b;
+    border-width: 1px;
+}
+
+.classic--button-light__red {
+    background: red;
+}
+
+.classic--button-light.value-1 {
+    color: #00f;
+}
+.classic--button-light.value-2 {
+    color: green;
+}
+.classic--button-light.value-3 {
+    color: red;
+}
+.classic--button-light.value-4 {
+    color: purple;
+}
+.classic--button-light.value-5 {
+    color: maroon;
+}
+.classic--button-light.value-6 {
+    color: #40e0d0;
+}
+.classic--button-light.value-7 {
+    color: #000;
+}
+.classic--button-light.value-8 {
+    color: grey;
+}
+
+.classic--button-dark {
+    border-color: #404040 #222 #222 #404040;
+    border-style: solid;
+    border-width: 4px;
+}
+
+.classic--button-dark:active {
+    border-color: #7b7b7b #fff #fff #7b7b7b;
+}
+
+.classic--button-dark__visible {
+    border-color: #cacaca;
+    border-width: 1px;
+}
+
+.classic--button-dark__red {
+    background: tomato;
+}
+
+.classic--button-dark.value-1 {
+    color: #5f9ea0;
+}
+.classic--button-dark.value-2 {
+    color: plum;
+}
+.classic--button-dark.value-3 {
+    color: #98fb98;
+}
+.classic--button-dark.value-4 {
+    color: #afeeee;
+}
+.classic--button-dark.value-5 {
+    color: #db7093;
+}
+.classic--button-dark.value-6 {
+    color: #ffefd5;
+}
+.classic--button-dark.value-7 {
+    color: #ffdab9;
+}
+.classic--button-dark.value-8 {
+    color: #b0e0e6;
+}
+
+.classic--button span {
+    font-size: 12px;
+    margin-left: 2px;
+}
+
+/* Skeuomorph button styles */
+.skeuomorph--button {
+    align-items: center;
+    display: flex;
+    font-weight: 700;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.skeuomorph--button:focus {
+    outline: none;
+}
+
+.skeuomorph--button-light {
+    background: linear-gradient(
+        180deg,
+        #efeff3 0%,
+        #f2f5f7 0.01%,
+        #dce7f2 100%
+    );
+    box-shadow: 0 1.68px 1.68px #96bbe1,
+        0 3.36px 4.2px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    margin: 1px;
+}
+
+.skeuomorph--button-light__visible {
+    background: #e3edf7;
+    box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48),
+        inset -3px -3px 7px #fff;
+    border-radius: 21px;
+}
+
+.skeuomorph--button-light__red {
+    background: #fc3c00;
+    box-shadow: inset 3px 3px 7px rgba(140, 45, 45, 0.48),
+        inset -3px -3px 7px #ff9d9d;
+    border-radius: 21px;
+}
+
+.skeuomorph--button-light.value-1 {
+    color: #0086ff;
+}
+.skeuomorph--button-light.value-2 {
+    color: #f06500;
+}
+.skeuomorph--button-light.value-3 {
+    color: #8d8bff;
+}
+.skeuomorph--button-light.value-4 {
+    color: #00c35a;
+}
+.skeuomorph--button-light.value-5 {
+    color: #fcd400;
+}
+.skeuomorph--button-light.value-6 {
+    color: #fc3c00;
+}
+.skeuomorph--button-light.value-7 {
+    color: #9c00fc;
+}
+.skeuomorph--button-light.value-8 {
+    color: #fc0079;
+}
+
+.skeuomorph--button-dark {
+    background: linear-gradient(
+        180deg,
+        #404040 0%,
+        #555 0.01%,
+        #333 100%
+    );
+    box-shadow: 0 1.68317px 1.68317px #666,
+        0 3.36634px 4.20792px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    margin: 1px;
+}
+
+.skeuomorph--button-dark__visible {
+    background: linear-gradient(348.69deg, #333 5.21%, #222 86.46%);
+    box-shadow: 0 1.68317px 1.68317px #666, 0 3.36634px 4.20792px #000,
+        inset 0 1px 0 #404040;
+}
+
+.skeuomorph--button-dark__red {
+    background: linear-gradient(
+        348.69deg,
+        #de5959 5.21%,
+        #650000 86.46%
+    );
+    box-shadow: 0 1.68317px 1.68317px #ff1010,
+        0 3.36634px 4.20792px rgba(255, 146, 146, 0.1),
+        inset 0 1px 0 #940f19;
+}
+
+.skeuomorph--button-dark.value-1 {
+    color: #5f9ea0;
+}
+.skeuomorph--button-dark.value-2 {
+    color: plum;
+}
+.skeuomorph--button-dark.value-3 {
+    color: #98fb98;
+}
+.skeuomorph--button-dark.value-4 {
+    color: #afeeee;
+}
+.skeuomorph--button-dark.value-5 {
+    color: #db7093;
+}
+.skeuomorph--button-dark.value-6 {
+    color: #ffefd5;
+}
+.skeuomorph--button-dark.value-7 {
+    color: #ffdab9;
+}
+.skeuomorph--button-dark.value-8 {
+    color: #b0e0e6;
+}

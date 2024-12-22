@@ -1,0 +1,114 @@
+.nav {
+    height: 60px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.nav img {
+    flex-grow: 3;
+}
+
+.nav--items {
+    display: flex;
+}
+
+.nav-light {
+    background: #fff;
+}
+
+.nav-dark {
+    background: #3f3f4c;
+}
+
+.options {
+    display: inline-flex;
+    align-items: center;
+}
+
+.options button {
+    color: #fff;
+    border: none;
+    margin: 0 16px 0 0;
+    padding: 20px 24px;
+    height: 100%;
+}
+
+#toggle {
+    width: 50px;
+    display: block;
+    padding: 5px;
+    background-color: #1a202c;
+    border-radius: 1000px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px -10px #000;
+    transition: background-color 0.2s ease-in;
+}
+
+#toggle .toggle-inner {
+    width: 20px;
+    height: 15px;
+    background-color: #fff;
+    border-radius: 1000px;
+    transition: margin-left 0.2s ease-in,
+        background-color 0.2s ease-in;
+}
+
+#toggle .toggle-inner.toggle-active {
+    margin-left: 20px;
+}
+
+/* Nav Skeuomorph styles */
+.nav-skeuomorph-light {
+    background: #0e8cfe;
+    box-shadow: 8px 40px 96px rgba(18, 61, 101, 0.14),
+        inset -8px -6px 80px rgba(255, 255, 255, 0.18);
+}
+
+.nav-skeuomorph-dark {
+    background: linear-gradient(
+        200.6deg,
+        #353a40 -3.02%,
+        #121416 93.08%
+    );
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2),
+        0 1px 18px rgba(0, 0, 0, 0.12), 0 6px 10px rgba(0, 0, 0, 0.14);
+}
+
+.nav-skeuomorph-dark #toggle {
+    background-color: #fff;
+}
+
+.nav-skeuomorph-dark #toggle .toggle-inner {
+    background-color: #1a202c;
+}
+
+/* Nav Classic styles */
+.nav-classic-light {
+    border-color: #fff #999 #999 #fff;
+    border-style: solid;
+    border-width: 4px;
+    background: #c2c2c2;
+}
+
+.nav-classic-dark {
+    border-color: #5c5c5c #939393 #939393 #5c5c5c;
+    border-style: solid;
+    border-width: 4px;
+    background: #333;
+}
+
+.nav-classic-dark #toggle {
+    background-color: #fff;
+}
+
+.nav-classic-dark #toggle .toggle-inner {
+    background-color: #1a202c;
+}

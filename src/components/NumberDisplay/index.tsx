@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import './NumberDisplay.scss';
+import './NumberDisplay.css';
 import useInterval from '../../hooks/useInterval';
 import { StateContext } from '../../contexts/GameContext';
 

@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
-import './Button.scss';
+import './Button.css';
 import { CellState, CellValue } from '../../types';
-import {
-    StateContext,
-} from '../../contexts/GameContext';
+import { StateContext } from '../../contexts/GameContext';
 
 interface ButtonProps {
     col: number;
