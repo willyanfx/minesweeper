@@ -1,10 +1,9 @@
-import React, { useReducer, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
-import { Mode, Theme, Difficult } from './types';
+import { Mode, Theme } from './types';
 import usePersistedState from './hooks/usePersistedState';
 import Game from './components/Game';
 import {
-    GameContext,
     StateContext,
     DispatchContext,
 } from './contexts/GameContext';
@@ -16,21 +15,21 @@ const initialState = {
     mode: Mode.dark,
 };
 
-
 const App: React.FC = () => {
     const [game, setGame] = usePersistedState('theme', initialState);
     const setVisual = ({ ...args }) => {
         setGame({ ...game, ...args });
     };
 
-    const rootRef = useRef<HTMLElement>(null!)
+    const rootRef = useRef<HTMLElement>(null!);
 
     useEffect(() => {
         if (!rootRef.current) {
-            rootRef.current = document.getElementById("root")!
+            rootRef.current = document.getElementById('root')!;
         }
-        rootRef.current.style.background = backgroundColor(game) || `grey`;
-    }, [game])
+        rootRef.current.style.background =
+            backgroundColor(game) || `grey`;
+    }, [game]);
 
     return (
         <>
