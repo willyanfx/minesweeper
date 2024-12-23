@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
+import NumberFlow, {
+    NumberFlowGroup,
+    type Format,
+} from '@number-flow/react';
 import './NumberDisplay.css';
 import useInterval from '../../hooks/useInterval';
 import { StateContext } from '../../contexts/GameContext';
@@ -23,14 +27,33 @@ const NumberDisplay: React.FC<NumberDisplayProps> = ({
         .filter(Boolean)
         .join(' ');
 
+    const format: Format = {
+        notation: 'standard',
+        compactDisplay: 'short',
+        minimumIntegerDigits: 3,
+    };
+
     return (
-        <div className={classes}>
-            <span
-                className={`${theme}--numberDisplay-${mode}__numbers`}
-            >
-                {value.toString().padStart(3, '0')}
-            </span>
-        </div>
+        <NumberFlowGroup>
+            <div className={classes}>
+                <span
+                    className={`${theme}--numberDisplay-${mode}__numbers`}
+                >
+                    <NumberFlow
+                        willChange
+                        continuous
+                        trend={0}
+                        format={format}
+                        opacityTiming={{
+                            duration: 350,
+                            easing: 'ease-out',
+                        }}
+                        value={value}
+                    />
+                    {/* {value.toString().padStart(3, '0')} */}
+                </span>
+            </div>
+        </NumberFlowGroup>
     );
 };
 

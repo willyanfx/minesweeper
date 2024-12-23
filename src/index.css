@@ -1,9 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap');
+
 :root {
     --color-darkmode: #f5f8f8;
     --color-primary: #00aef2;
 }
-
-@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap');
 
 *,
 *::before,
