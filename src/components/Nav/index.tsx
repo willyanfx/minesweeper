@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import './Nav.css';
-import { Mode, Theme, Difficult } from '../../types';
+import { Mode, Theme } from '../../types';
 
 import {
     StateContext,

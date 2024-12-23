@@ -1,9 +1,4 @@
-import React, {
-    useState,
-    useReducer,
-    useContext,
-    useEffect,
-} from 'react';
+import { useState, useReducer, useContext } from 'react';
 import { StateContext } from '../../contexts/GameContext';
 import { reducer, IState } from '../../reducer';
 import Cells from '../Cells';
@@ -162,13 +157,11 @@ const Game: React.FC = () => {
     };
 
     // handle mouse event
-    const handleMouseDown = (
-        e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    ) => dispatch({ type: ActionType.face, payload: Face.oh });
+    const handleMouseDown = () =>
+        dispatch({ type: ActionType.face, payload: Face.oh });
 
-    const handleMouseUp = (
-        e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    ) => dispatch({ type: ActionType.face, payload: Face.smile });
+    const handleMouseUp = () =>
+        dispatch({ type: ActionType.face, payload: Face.smile });
 
     const showAllBombs = (): Cell[][] => {
         const currentCells = cells.slice();
