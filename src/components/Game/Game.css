@@ -1,0 +1,228 @@
+.game {
+    z-index: 999999;
+}
+
+.result {
+    min-height: 2rem;
+    max-height: 2.05rem;
+    margin-bottom: 0.25rem;
+}
+
+.result h1 {
+    font-size: 1rem;
+    line-height: 1.4rem;
+    font-weight: 600;
+}
+
+/* Classic game styles */
+.classic {
+    padding: 16px;
+}
+
+.classic button:disabled {
+    color: #000;
+}
+
+.classic-light {
+    border-color: #fff #999 #999 #fff;
+    border-style: solid;
+    border-width: 4px;
+    background: #c2c2c2;
+}
+
+.classic-dark {
+    border-color: #666 #404040 #404040 #666;
+    border-style: solid;
+    border-width: 4px;
+    background: #333;
+}
+
+.classic--header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+}
+
+.classic--header-light {
+    border-color: #7b7b7b #fff #fff #7b7b7b;
+    border-style: solid;
+    border-width: 4px;
+    background: silver;
+}
+
+.classic--header-dark {
+    border-color: #2b2b2b #414141 #414141 #2b2b2b;
+    border-style: solid;
+    border-width: 4px;
+    background: #222;
+}
+
+.classic--body {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    margin-top: 16px;
+}
+
+.classic--body-light {
+    border-color: #7b7b7b #fff #fff #7b7b7b;
+    border-style: solid;
+    border-width: 4px;
+}
+
+.classic--body-dark {
+    border-color: #000 #666 #666 #000;
+    border-style: solid;
+    border-width: 4px;
+}
+
+.classic--face {
+    border-color: #fff #7b7b7b #7b7b7b #fff;
+    border-style: solid;
+    border-width: 4px;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 35px;
+    height: 52px;
+    justify-content: center;
+    width: 52px;
+}
+
+.classic--face:active {
+    border-color: #7b7b7b #fff #fff #7b7b7b;
+}
+
+/* Skeuomorph game styles */
+.skeuomorph {
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.skeuomorph-light {
+    background: #dce8f4;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), inset 0 -2px 2px #fff,
+        inset 0 -1px 0 #81a3c3;
+}
+
+.skeuomorph-dark {
+    background: #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15),
+        inset 0 -2px 2px #a0a0a0, inset 0 -1px 0 #707070;
+}
+
+.skeuomorph--header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+.skeuomorph--header-light {
+    background: linear-gradient(180deg, #e7eef4, #b7d1eb);
+    box-shadow: 0 5.0495px 8.41584px #dae7f4,
+        0 0.84158px 1.68317px rgba(255, 255, 255, 0.8),
+        0 -3.36634px 8.41584px rgba(255, 255, 255, 0.7),
+        inset 0 0.84158px 1.68317px #6d8ead;
+}
+
+.skeuomorph--header-dark {
+    background: linear-gradient(166.67deg, #383737 -5.41%, #1c1b1b);
+    box-shadow: 0 5px 8.3px #444,
+        0 0.84px 1.68px rgba(40, 40, 40, 0.8),
+        0 -3.36px 8.41584px rgba(40, 40, 40, 0.7),
+        inset 0 0.84px 1.6px #000;
+}
+
+.skeuomorph--body {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    margin-top: 16px;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.skeuomorph--body-light {
+    background: linear-gradient(180deg, #e7eef4, #b7d1eb);
+    box-shadow: 0 5.0495px 8.41584px #dae7f4,
+        0 0.84158px 1.68317px rgba(255, 255, 255, 0.8),
+        0 -3.36634px 8.41584px rgba(255, 255, 255, 0.7),
+        inset 0 0.84158px 1.68317px #6d8ead;
+}
+
+.skeuomorph--body-dark {
+    background: linear-gradient(
+        135.95deg,
+        #333 -22.77%,
+        #1c1b1b 91.18%
+    );
+    box-shadow: 0 5.0495px 8.41584px #444,
+        0 0.84158px 1.68317px rgba(40, 40, 40, 0.8),
+        0 -3.36634px 8.41584px rgba(40, 40, 40, 0.7),
+        inset 0 0.84158px 1.68317px #000;
+}
+
+.skeuomorph--face {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 35px;
+    height: 52px;
+    justify-content: center;
+    width: 52px;
+    border-radius: 8px;
+}
+
+.skeuomorph--face:focus {
+    outline: none;
+}
+
+.skeuomorph--face-light {
+    background: linear-gradient(
+        180deg,
+        #efeff3,
+        #f2f5f7 0.01%,
+        #dce7f2
+    );
+    box-shadow: 0 1.68317px 1.68317px #96bbe1,
+        0 3.36634px 4.20792px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.skeuomorph--face-light:active {
+    background: linear-gradient(
+        360deg,
+        #efeff3 0.61%,
+        #f2f5f7 0.62%,
+        #d0ddea 99.39%
+    );
+    box-shadow: 0 1.68317px 1.68317px #96bbe1,
+        0 3.36634px 4.20792px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 #fefeff;
+}
+
+.skeuomorph--face-dark {
+    background: linear-gradient(
+        180deg,
+        #000000 0%,
+        #3d3d3d 0.01%,
+        #1d1e20 100%
+    );
+    box-shadow: 0 1.68317px 1.68317px #333,
+        0 3.36634px 4.20792px #000000;
+}
+
+.skeuomorph--face-dark:active {
+    background: linear-gradient(
+        360deg,
+        #666666 0.61%,
+        #3d4043 0.62%,
+        #222222 99.39%
+    );
+    box-shadow: 0 1.68317px 1.68317px #000000,
+        0 3.36634px 4.20792px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 #363636;
+}

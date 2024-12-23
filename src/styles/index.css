@@ -1,0 +1,23 @@
+:root {
+    --color-darkmode: #f5f8f8;
+    --color-primary: #00aef2;
+    --left-top-color: white;
+    --right-bottom-color: #7b7b7b;
+}
+
+/* Border utility classes */
+.borders {
+    border-bottom-color: var(--right-bottom-color);
+    border-left-color: var(--left-top-color);
+    border-right-color: var(--right-bottom-color);
+    border-style: solid;
+    border-top-color: var(--left-top-color);
+    border-width: 4px;
+}
+
+.buttons:active {
+    border-bottom-color: var(--left-top-color);
+    border-left-color: var(--right-bottom-color);
+    border-right-color: var(--left-top-color);
+    border-top-color: var(--right-bottom-color);
+}
